@@ -1,0 +1,33 @@
+#! /usr/bin/env bash
+
+if [ "$#" -ne 1 ]; then
+    echo "You must specify a target PDF!" >&2
+
+    exit 1
+fi
+
+if ! [[ "$1" = *.pdf ]]; then
+    echo "'$1' does not end in '.pdf'!" >&2
+
+    exit 1
+fi
+
+
+if ! [ -f "$1" ]; then
+    echo "'$1' does not exist!" >&2
+
+    exit 1
+fi
+
+# Note that
+target_pdf="$1"
+output_png="${target_pdf/.pdf/.png}"
+cleared_png="${output_png/.png/-clear.png}"
+cleared_pdf="${cleared_png/.png/.pdf}"
+
+echo "Converting '$target_pdf' to '$cleared_pdf'..." >&2
+
+convert -verbose -density 300 "$target_pdf" -quality 100 -flatten -sharpen 0x1.0 "$output_png"
+bg_color="$(convert "$output_png" -format "%[pixel:p{0,0}]" info:)"
+convert "$output_png" -fuzz 20% -transparent "$bg_color" "$cleared_png"
+convert "$cleared_png" "$cleared_pdf"
