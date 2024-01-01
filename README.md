@@ -30,4 +30,8 @@ TODO Declare CLI tools in a .nix file or similar, so it's easier to use.
 
 ## License
 
-All works I've created in this repository are in the public domain.
+All works I've created in this repository are under the [CC0 1.0 Universal
+license](https://creativecommons.org/publicdomain/zero/1.0/?ref=chooser-v1).
+
+That effectively means "this is in the public domain" (but follow the link for
+the legalese if you like).
