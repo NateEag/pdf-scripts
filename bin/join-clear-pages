@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+# FIXME Take target PDF as input arg, then name result PDF based on input PDF.
+# Using find / sort / xargs because we need to sort input pages numerically.
+script_name="$(basename "$0")"
+usage_msg="Usage: $script_name <pages_dir> <result_pdf>"
+if [ $# -ne 2 ]; then
+    echo "$usage_msg" >&2
+
+    exit 1
+fi
+
+tmp_pages_dir="$1"
+result_pdf="$2"
+
+find "$tmp_pages_dir" -name '*-clear.pdf' -print0 |
+    # FIXME Stop hardcoding the number of / chars in the -k param. Count them
+    # before constructing this.
+    sort -z -n -t / -k5 |
+    { cat; printf '%s\0' "$result_pdf"; } |
+    xargs -0 -x pdfunite

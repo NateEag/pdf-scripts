@@ -57,14 +57,7 @@ fi
 find "$tmp_pages_dir" -iname '*.pdf' -print0 |
     xargs -0 -L 1 -P "$max_jobs" clear-page-background
 
-# FIXME Take target PDF as input arg, then name result PDF based on input PDF.
-# Using find / sort / xargs because we need to sort input pages numerically.
-find "$tmp_pages_dir" -name '*-clear.pdf' -print0 |
-    # FIXME Stop hardcoding the number of / chars in the -k param. Count them
-    # before constructing this.
-    sort -z -n -t / -k5 |
-    { cat; printf '%s\0' "$result_pdf"; } |
-    xargs -0 -x pdfunite
+join-clear-pages "$tmp_pages_dir" "$result_pdf"
 
 # FIXME Clean up the processing directory iff we've processed all pages.
 # Otherwise we'll want to keep existing pages in place and ignore them, so we
