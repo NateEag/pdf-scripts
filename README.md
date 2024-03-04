@@ -10,8 +10,8 @@ sets](https://archive.org/details/lego-building-instructions-71391/71391_01_BI_B
 there are hundreds of pages.
 
 By running them through `bin/clear-pdf-background`, which detects the
-background color on each PDF page and replaces it with transparency, I reduced
-the amount of ink consumed to print out copies significantly.
+background color on each PDF page and replaces it with transparency, I
+significantly reduced the amount of ink required to print out the instructions.
 
 I find that printing the resulting PDF with two pages to a US Letter page
 results in sufficiently-readable instructions, while cutting the printed page
@@ -26,7 +26,11 @@ number of required pages in half again.
 I have only tested this bash script on a NixOS install. It depends on several
 CLI tools to do its job.
 
-TODO Declare CLI tools in a .nix file or similar, so it's easier to use.
+TODO Declare required CLI tools in a .nix file or similar, so it's easier to
+use.
+
+TODO Add a progress meter, so there's a reasonable way to tell how the script
+is doing.
 
 ## License
 
