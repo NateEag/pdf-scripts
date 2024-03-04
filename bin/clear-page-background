@@ -29,5 +29,5 @@ echo "Converting '$target_pdf' to '$cleared_pdf'..." >&2
 
 convert -verbose -density 300 "$target_pdf" -quality 100 -flatten -sharpen 0x1.0 "$output_png"
 bg_color="$(convert "$output_png" -format "%[pixel:p{0,0}]" info:)"
-convert "$output_png" -fuzz 20% -transparent "$bg_color" "$cleared_png"
+convert "$output_png" -fuzz 5% -transparent "$bg_color" "$cleared_png"
 convert "$cleared_png" "$cleared_pdf"
