@@ -32,6 +32,16 @@ use.
 TODO Add a progress meter, so there's a reasonable way to tell how the script
 is doing.
 
+TODO Add some kind of useful error tracking. I've at least once had a page or
+two fail, and then it's an annoying manual process to go back and figure out
+which ones failed and manually re-run them (though it's probably my own fault
+they failed at all - modifying running bash scripts is a recipe for disaster).
+This is why I don't have it cleaning up the tmp directory, because that way
+when I discover errors I only have to re-render pages that failed. A good quick
+sanity-check before stitching together the final PDF would be that we have the
+same number of clarified pages as the original PDF does. If not we could print
+out the missing filenames in thhe sequence.
+
 TODO Improve accuracy of color detection and removal against
 https://ia802607.us.archive.org/13/items/lego-building-instructions-71369/71369_A_ALT_BI_LOW.pdf.
 I hit issues with the blue bricks on the first few pages getting their colors
